@@ -6,4 +6,4 @@ Algoritma Dasar terdiri dari :
   3. Looping, Proses berjalan secara berulang-ulang sampai tujuan dicapai.
   
 Flowchart adalah sebuah bagan alir dari sebuah proses dengan menggunakan simbol tertentu untuk mewakili urutan dan hubungan antara proses secara detail.
-![image.png]( {[link gambar](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/blob/main/4_Introduction%20to%20Algorithm%20and%20Golang/Summary/decision.png)} )
+
