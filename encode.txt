@@ -1,4 +1,0 @@
-b, _ := aes.NewCipher(key)
-aesgcm, _ := cipher.NewGCM(b)
-data := aesgcm.Seal(nil, iv, []byte(plaintext), nil)
-return hex.EncodeToString(salt) + "." + hex.EncodeToString(iv) + "." + hex.EncodeToString(data)
