@@ -18,7 +18,7 @@ func primeNumber(number int) bool { //false = bukan bilangan prima || true = bil
 }
 
 func main() {
-	fmt.Println(primeNumber(1000000007)) // true
+	fmt.Println(primeNumber(91)) 
 	fmt.Println(primeNumber(13))         // true
 	fmt.Println(primeNumber(17))         // true
 	fmt.Println(primeNumber(20))         // false
