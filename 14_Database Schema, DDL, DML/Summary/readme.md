@@ -9,3 +9,9 @@ DDL (Data Definition Language) adalah adalah perintah untuk mengubah/mengatur de
 - CREATE berfungsi untuk membuat database, tabel, function ataupun trigger.
 - ALTER berfungsi untuk mengubah database, tabel dan kolom.
 - DROP digunakan untuk menghapus objek database seperti database, table dll.
+
+- Perintah DML meliputi SELECT, INSERT, UPDATE, dan DELETE.
+- SELECT digunakan untuk mengambil data didalam tabel.
+- INSERT digunakan untuk menambahkan data baru ke dalam tabel.
+- UPDATE digunakan untuk mengubah data yang berada di dalam tabel.
+- DELETE digunakan untuk menghapus data didalam tabel.
