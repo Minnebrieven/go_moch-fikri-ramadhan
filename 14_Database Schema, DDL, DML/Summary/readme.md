@@ -3,6 +3,7 @@
 Database adalah kumpulan data yang terstruktur dan diorganisir agar memungkinkan pengambilan dan manipulasi informasi yang efisien. Chema adalah rancangan database yang mendefinisikan struktur database, termasuk tabel (entity), kolom (attribute), relasi/constraint.
 
 DDL (Data Definition Language) adalah adalah perintah untuk mengubah/mengatur definisi database
+DDL (Data Manipulation Language) adalah adalah perintah untuk mengubah/mengatur/memanipulasi data didalam tabel
 
 ## Poin-poin penting
 - Perintah DDL meliputi CREATE, ALTER, dan DROP.
