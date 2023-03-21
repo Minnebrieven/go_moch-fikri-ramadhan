@@ -1,0 +1,9 @@
+1.Redis
+KEYS * atau KEYS *users* 
+
+2.Neo4j
+MATCH (n:users) RETURN n
+
+
+3.Cassandra
+select * from users;
