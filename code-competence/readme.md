@@ -377,7 +377,144 @@ In order to get JWT Token user must be registered first via endpoint `/register`
    curl --location 'localhost:8000/items?keyword={item_name}&page={page_number}' \
    --header 'Authorization: Bearer {Token}'
   ```
+
+**Get All Items By Category (Category ID)**
+----
+  retrieve all items data by category id.
+
+* **URL**
+
+  /items/category/:category_id?page={page_number}
+
+* **Header**
+
+  * **Content-Type : application/json**
+  * **Authorization : Bearer {Token}**
+
+* **Body**
+
+  None
   
+* **Method:**
+
+  `GET`
+  
+* **Url Params**
+
+  `category_id=[integer]`
+
+* **Data Params**
+
+  **Required:**
+  
+  `page=[integer]`
+  this parameter used for change page
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content : JSON** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 200,
+          "message": "success"
+      },
+      "pagination": {
+          "page": 0,
+          "data_shown": 10,
+          "total_data": 2
+      },
+      "data": [
+          {
+              "id": "ca80c1de-9fe3-4db2-aeec-fc0df7d6c768",
+              "name": "Laptop",
+              "category": {
+                  "id": 2,
+                  "name": "Digital",
+                  "metadata": {
+                      "DeletedAt": null,
+                      "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                      "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+                  }
+              },
+              "description": "televisi digital",
+              "stock": 6,
+              "price": 2000000,
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.883+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.883+07:00"
+              }
+          },
+          {
+              "id": "f0024bb2-96d1-46a2-9c21-aee52acb5bca",
+              "name": "Television",
+              "category": {
+                  "id": 2,
+                  "name": "Digital",
+                  "metadata": {
+                      "DeletedAt": null,
+                      "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                      "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+                  }
+              },
+              "description": "televisi digital",
+              "stock": 3,
+              "price": 1000000,
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.883+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.883+07:00"
+              }
+          }
+      ]
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 400,
+          "message": "invalid page parameter: pagestring"
+      },
+      "pagination": {
+          "page": 0,
+          "data_shown": 0,
+          "total_data": 0
+      },
+      "data": null
+    }
+  OR
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 400,
+          "message": "invalid id parameter asd"
+      },
+      "pagination": {
+          "page": 0,
+          "data_shown": 0,
+          "total_data": 0
+      },
+      "data": null
+    }
+    ```
+  
+
+* **Sample Call:**
+
+  ```cURL
+   curl --location 'localhost:8000/items/category/:category_id?page={page_number}' \
+   --header 'Authorization: Bearer {Token}'
+  ```
+
 **Get an Item**
 ----
   Retrieve single item data.
