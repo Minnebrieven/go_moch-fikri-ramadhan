@@ -13,6 +13,10 @@ In order to get JWT Token user must be registered first via endpoint `/register`
 
   /register
 
+* **Header**
+
+  * **Content-Type : application/json**
+
 * **Body**
 
   * **Content : JSON**
@@ -108,6 +112,10 @@ In order to get JWT Token user must be registered first via endpoint `/register`
 
   /login
 
+* **Header**
+
+  * **Content-Type : application/json**
+
 * **Body**
 
   * **Content : JSON**
@@ -194,4 +202,274 @@ In order to get JWT Token user must be registered first via endpoint `/register`
       "email":"fikri1711@gmail.com",
       "password":"fikri1711"
    }'
+  ```
+
+**Get All Items**
+----
+  retrieve all items data.
+
+* **URL**
+
+  /items?keyword={item_name}&page={page_number}
+
+* **Header**
+
+  * **Content-Type : application/json**
+  * **Authorization : Bearer {Token}**
+
+* **Body**
+
+  None
+  
+* **Method:**
+
+  `GET`
+  
+* **Url Params**
+
+  None
+
+* **Data Params**
+
+  `keyword=[string]`
+  this parameter used for retrieve items data based on item's name
+
+  **Required:**
+  
+  `page=[integer]`
+  this parameter used for change page
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content : JSON** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 200,
+          "message": "success"
+      },
+      "pagination": {
+          "page": 0,
+          "data_shown": 10,
+          "total_data": 4
+      },
+      "data": [
+          {
+              "id": "246d5d65-7e98-47e6-939f-a09d6d7026ec",
+              "name": "Radio",
+              "category": {
+                  "id": 1,
+                  "name": "Analog",
+                  "metadata": {
+                      "DeletedAt": null,
+                      "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                      "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+                  }
+              },
+              "description": "Radio analog klasik",
+              "stock": 10,
+              "price": 200000,
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.883+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.883+07:00"
+              }
+          },
+          {
+              "id": "ca80c1de-9fe3-4db2-aeec-fc0df7d6c768",
+              "name": "Laptop",
+              "category": {
+                  "id": 2,
+                  "name": "Digital",
+                  "metadata": {
+                      "DeletedAt": null,
+                      "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                      "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+                  }
+              },
+              "description": "televisi digital",
+              "stock": 6,
+              "price": 2000000,
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.883+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.883+07:00"
+              }
+          },
+          {
+              "id": "cad29a6a-859e-4bf8-8ba1-634fd14a0a7f",
+              "name": "Speaker",
+              "category": {
+                  "id": 1,
+                  "name": "Analog",
+                  "metadata": {
+                      "DeletedAt": null,
+                      "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                      "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+                  }
+              },
+              "description": "pengeras suara",
+              "stock": 5,
+              "price": 500000,
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.883+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.883+07:00"
+              }
+          },
+          {
+              "id": "f0024bb2-96d1-46a2-9c21-aee52acb5bca",
+              "name": "Television",
+              "category": {
+                  "id": 2,
+                  "name": "Digital",
+                  "metadata": {
+                      "DeletedAt": null,
+                      "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                      "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+                  }
+              },
+              "description": "televisi digital",
+              "stock": 3,
+              "price": 1000000,
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.883+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.883+07:00"
+              }
+          }
+      ]
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** 
+    ```json
+    {
+      "message": "invalid or expired jwt"
+    }
+    ```
+  OR
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 400,
+          "message": "invalid page parameter: pagestring"
+      },
+      "pagination": {
+          "page": 0,
+          "data_shown": 0,
+          "total_data": 0
+      },
+      "data": null
+    }
+    ```
+  
+
+* **Sample Call:**
+
+  ```cURL
+   curl --location 'localhost:8000/items?keyword={item_name}&page={page_number}' \
+   --header 'Authorization: Bearer {Token}'
+  ```
+  
+**Get an Item**
+----
+  Retrieve single item data.
+
+* **URL**
+
+  /items/:id
+
+* **Header**
+
+  * **Content-Type : application/json**
+  * **Authorization : Bearer {Token}**
+
+* **Body**
+
+  None
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `id=[uuid]`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 200,
+          "message": "success"
+      },
+      "data": {
+          "id": "cad29a6a-859e-4bf8-8ba1-634fd14a0a7f",
+          "name": "Speaker",
+          "category": {
+              "id": 1,
+              "name": "Analog",
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+              }
+          },
+          "description": "pengeras suara",
+          "stock": 5,
+          "price": 500000,
+          "metadata": {
+              "DeletedAt": null,
+              "CreatedAt": "2023-05-24T23:47:59.883+07:00",
+              "UpdatedAt": "2023-05-24T23:47:59.883+07:00"
+          }
+      }
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 400,
+          "message": "invalid id parameter cad29a6a-859e-4bf8-8b91-634fd14a0akf"
+      },
+      "data": null
+    }
+    ```
+
+  OR
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** 
+    ```json
+    {
+      "message": "invalid or expired jwt"
+    }
+    ```
+
+* **Sample Call:**
+
+  ```cURL
+    curl --location 'localhost:8000/items/cad29a6a-859e-4bf8-8ba1-634fd14a0a7f' \
+    --header 'Authorization: Bearer {Token}'
   ```
