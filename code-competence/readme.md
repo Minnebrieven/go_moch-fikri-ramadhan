@@ -4,6 +4,7 @@ This API is created for an electric store to manage electronic item data. the it
 To able to use this API, JWT Token is required which can be placed at request's header with `Authorization` as a Key and JWT Token as its value `Bearer {{Token}}`.
 
 In order to get JWT Token user must be registered first via endpoint `/register`. After user registering token can be taken via endpoint `/login`.
+----
 
 **Register/Create New User**
 ----
@@ -103,6 +104,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
       "password":"123"
     }'
   ```
+----
 
 **Login User**
 ----
@@ -203,6 +205,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
       "password":"fikri1711"
    }'
   ```
+----
 
 **Get All Items**
 ----
@@ -377,6 +380,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
    curl --location 'localhost:8000/items?keyword={item_name}&page={page_number}' \
    --header 'Authorization: Bearer {Token}'
   ```
+----
 
 **Get All Items By Category (Category ID)**
 ----
@@ -514,6 +518,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
    curl --location 'localhost:8000/items/category/:category_id?page={page_number}' \
    --header 'Authorization: Bearer {Token}'
   ```
+----
 
 **Get an Item**
 ----
@@ -610,3 +615,313 @@ In order to get JWT Token user must be registered first via endpoint `/register`
     curl --location 'localhost:8000/items/cad29a6a-859e-4bf8-8ba1-634fd14a0a7f' \
     --header 'Authorization: Bearer {Token}'
   ```
+----
+
+**Create New Item**
+----
+  Create new item data.
+
+* **URL**
+
+  /items
+
+* **Header**
+
+  * **Content-Type : application/json**
+  * **Authorization : Bearer {Token}**
+
+* **Body**
+
+  * **Content : JSON**
+  ```json
+  {
+      "name": "Kipas",
+      "category": {
+          "id": 1
+      },
+      "description": "ademmm dinginnn brrr...",
+      "stock": 5,
+      "price": 300000
+  }
+  ```
+
+* **Method:**
+
+  `POST`
+  
+* **URL Params**
+
+  None
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 201,
+          "message": "success create item"
+      },
+      "data": {
+          "id": "bd5b4dac-de43-4211-9387-2cd08ac9ec76",
+          "name": "Kipas",
+          "category": {
+              "id": 1,
+              "name": "Analog",
+              "metadata": {
+                  "DeletedAt": null,
+                  "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                  "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+              }
+          },
+          "description": "ademmm dinginnn brrr...",
+          "stock": 5,
+          "price": 300000,
+          "metadata": {
+              "DeletedAt": null,
+              "CreatedAt": "2023-05-25T01:02:18.851+07:00",
+              "UpdatedAt": "2023-05-25T01:02:18.851+07:00"
+          }
+      }
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 400,
+          "message": "name can't be blank"
+      },
+      "data": null
+    }
+    ```
+
+  OR
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** 
+    ```json
+    {
+      "message": "invalid or expired jwt"
+    }
+    ```
+
+* **Sample Call:**
+
+  ```cURL
+    curl --location 'localhost:8000/items' \
+    --header 'Authorization: Bearer {Token}' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "name": "Kipas",
+        "category": {
+            "id": 1
+        },
+        "description": "ademmm dinginnn brrr...",
+        "stock": 5,
+        "price": 300000
+    }'
+  ```
+----
+
+**Edit Item Data**
+----
+  Edit existing item data.
+
+* **URL**
+
+  /items/:id
+
+* **Header**
+
+  * **Content-Type : application/json**
+  * **Authorization : Bearer {Token}**
+
+* **Body**
+
+  * **Content : JSON**
+  ```json
+  {
+      "name": "Komputer",
+      "category": {
+          "id": 2
+      },
+      "description": "komputer spek dewa"
+  }
+  ```
+
+* **Method:**
+
+  `PUT`
+  
+* **URL Params**
+
+   **Required:**
+
+  `id=[uuid]`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+       {
+        "metadata": {
+            "status_code": 200,
+            "message": "success edit item data"
+        },
+        "data": {
+            "id": "874bda65-e445-4efd-af7e-206e5ed5cf65",
+            "name": "Komputer",
+            "category": {
+                "id": 2,
+                "name": "Digital",
+                "metadata": {
+                    "DeletedAt": null,
+                    "CreatedAt": "2023-05-24T23:47:59.66+07:00",
+                    "UpdatedAt": "2023-05-24T23:47:59.66+07:00"
+                }
+            },
+            "description": "komputer spek dewa",
+            "stock": 5,
+            "price": 300000,
+            "metadata": {
+                "DeletedAt": null,
+                "CreatedAt": "2023-05-25T01:08:58.148+07:00",
+                "UpdatedAt": "2023-05-25T01:09:52.903+07:00"
+            }
+        }
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 400,
+          "message": "nothing to change"
+      },
+      "data": null
+    }
+    ```
+
+  OR
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** 
+    ```json
+    {
+      "message": "invalid or expired jwt"
+    }
+    ```
+
+* **Sample Call:**
+
+  ```cURL
+    curl --location --request PUT 'localhost:8000/items/874bda65-e445-4efd-af7e-206e5ed5cf65' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpa3JpMTcxMUBnbWFpbC5jb20iLCJleHAiOjE2ODQ5NTQ5MjEsInVzZXJJRCI6Mn0.ZyD0pwOZC6DP4wANkk5N_Co286NziNB613Bzc9n6EXU' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "name": "Komputer",
+        "category": {
+            "id": 2
+        },
+        "description": "komputer spek dewa"
+    }'
+  ```
+----
+
+**Delete Item Data**
+----
+  Delete existing item data.
+
+* **URL**
+
+  /items/:id
+
+* **Header**
+
+  * **Content-Type : application/json**
+  * **Authorization : Bearer {Token}**
+
+* **Body**
+
+  None
+
+* **Method:**
+
+  `DELETE`
+  
+* **URL Params**
+
+   **Required:**
+
+  `id=[uuid]`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 200,
+          "message": "success delete item"
+      },
+      "data": {
+          "item_id": "bd5b4dac-de43-4211-9387-2cd08ac9ec76"
+      }
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:** 
+    ```json
+    {
+      "metadata": {
+          "status_code": 200,
+          "message": "item not found"
+      },
+      "data": null
+    }
+    ```
+
+  OR
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** 
+    ```json
+    {
+      "message": "invalid or expired jwt"
+    }
+    ```
+
+* **Sample Call:**
+
+  ```cURL
+    curl --location --request DELETE 'localhost:8000/items/874bda65-e445-4efd-af7e-206e5ed5cf65' \
+    --header 'Authorization: Bearer {Token}'
+  ```
+----
