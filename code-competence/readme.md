@@ -107,7 +107,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
   ```
   
 * **Screenshot:**
-  ![screenshot of register](/markdown/success_register.png)
+  ![success_register](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/5aaaa6b6-a09a-4d07-96fc-a7e1086e536c)
 ----
 
 **Login User**
@@ -211,7 +211,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
   ```
   
 * **Screenshot:**
-  ![screenshot of register](/markdown/success_login.png)
+  ![success_login](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/48128bbb-c723-4a2f-ae21-6a1ece3e745b)
 ----
 
 **Get All Items**
@@ -389,8 +389,8 @@ In order to get JWT Token user must be registered first via endpoint `/register`
   ```
 
 * **Screenshot:**
-  ![screenshot of register](/markdown/success_getall.png)
-  ![screenshot of register](/markdown/success_getallbyname.png)
+  ![success_getall](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/f9479e43-0775-47c4-a904-75ec5f60cbb7)
+  ![success_getbyname](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/9bc6a043-b17f-4fce-9396-3dc26d2e69da)
 ----
 
 
@@ -532,7 +532,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
   ```
 
 * **Screenshot:**
-  ![screenshot of register](/markdown/success_getbycategory.png)
+  ![success_getbycategory](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/d6418ae0-73b0-4da3-8d4c-476ac50d5f48)
 ----
 
 **Get an Item**
@@ -633,7 +633,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
 
 
 * **Screenshot:**
-  ![screenshot of register](/markdown/success_get.png)
+  ![success_get](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/b3eab8e0-9b04-4457-b185-2ac355f3adf4)
 ----
 
 **Create New Item**
@@ -753,7 +753,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
   
 
 * **Screenshot:**
-  ![screenshot of register]([/markdown/success_create.png](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/blob/main/code-competence/markdown/success_create.png?raw=true))
+  ![success_create](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/7bf1688a-158a-4742-b3e5-9c6e245f750f)
 ----
 
 **Edit Item Data**
@@ -871,7 +871,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
   
 
 * **Screenshot:**
-  ![screenshot of register](/markdown/success_edit.png)
+  ![success_edit](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/26008a72-10d5-4117-8845-6d4ed9507124)
 ----
 
 **Delete Item Data**
@@ -953,5 +953,5 @@ In order to get JWT Token user must be registered first via endpoint `/register`
   ```
   
 * **Screenshot:**
-  ![screenshot of register](/markdown/success_delete.png)
+  ![success_delete](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/assets/30454868/98f2828c-f900-42e4-8ba3-c4d846491dd9)
 ----
