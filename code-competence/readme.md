@@ -105,6 +105,9 @@ In order to get JWT Token user must be registered first via endpoint `/register`
       "password":"123"
     }'
   ```
+  
+* **Screenshot:**
+  ![screenshot of register](/markdown/success_register.png)
 ----
 
 **Login User**
@@ -206,6 +209,9 @@ In order to get JWT Token user must be registered first via endpoint `/register`
       "password":"fikri1711"
    }'
   ```
+  
+* **Screenshot:**
+  ![screenshot of register](/markdown/success_login.png)
 ----
 
 **Get All Items**
@@ -381,7 +387,12 @@ In order to get JWT Token user must be registered first via endpoint `/register`
    curl --location 'localhost:8000/items?keyword={item_name}&page={page_number}' \
    --header 'Authorization: Bearer {Token}'
   ```
+
+* **Screenshot:**
+  ![screenshot of register](/markdown/success_getall.png)
+  ![screenshot of register](/markdown/success_getallbyname.png)
 ----
+
 
 **Get All Items By Category (Category ID)**
 ----
@@ -519,6 +530,9 @@ In order to get JWT Token user must be registered first via endpoint `/register`
    curl --location 'localhost:8000/items/category/:category_id?page={page_number}' \
    --header 'Authorization: Bearer {Token}'
   ```
+
+* **Screenshot:**
+  ![screenshot of register](/markdown/success_getbycategory.png)
 ----
 
 **Get an Item**
@@ -616,6 +630,10 @@ In order to get JWT Token user must be registered first via endpoint `/register`
     curl --location 'localhost:8000/items/cad29a6a-859e-4bf8-8ba1-634fd14a0a7f' \
     --header 'Authorization: Bearer {Token}'
   ```
+
+
+* **Screenshot:**
+  ![screenshot of register](/markdown/success_get.png)
 ----
 
 **Create New Item**
@@ -732,6 +750,10 @@ In order to get JWT Token user must be registered first via endpoint `/register`
         "price": 300000
     }'
   ```
+  
+
+* **Screenshot:**
+  ![screenshot of register]([/markdown/success_create.png](https://github.com/Minnebrieven/go_moch-fikri-ramadhan/blob/main/code-competence/markdown/success_create.png?raw=true))
 ----
 
 **Edit Item Data**
@@ -846,6 +868,10 @@ In order to get JWT Token user must be registered first via endpoint `/register`
         "description": "komputer spek dewa"
     }'
   ```
+  
+
+* **Screenshot:**
+  ![screenshot of register](/markdown/success_edit.png)
 ----
 
 **Delete Item Data**
@@ -925,4 +951,7 @@ In order to get JWT Token user must be registered first via endpoint `/register`
     curl --location --request DELETE 'localhost:8000/items/874bda65-e445-4efd-af7e-206e5ed5cf65' \
     --header 'Authorization: Bearer {Token}'
   ```
+  
+* **Screenshot:**
+  ![screenshot of register](/markdown/success_delete.png)
 ----
