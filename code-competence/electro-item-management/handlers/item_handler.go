@@ -96,15 +96,13 @@ func (u *itemHandler) GetItemByID(c echo.Context) error {
 	err := domains.ErrorCode{}
 	item := domains.Item{}
 
-	itemIDString := c.Param("id")
-	var itemID int
-	itemID, err.Err = strconv.Atoi(itemIDString)
+	itemID := c.Param("id")
+	err = item.Base.InsertID(itemID)
 	if err.Err != nil {
 		response.StatusCode = 400
-		response.Message = fmt.Sprintf("invalid id parameter %v", itemIDString)
+		response.Message = fmt.Sprintf("invalid id parameter %v", itemID)
 		return c.JSON(response.StatusCode, response)
 	}
-	item.ID = uint(itemID)
 
 	err = u.itemService.GetItemService(&item)
 	if err.Err != nil {
@@ -149,13 +147,8 @@ func (u *itemHandler) CreateItem(c echo.Context) error {
 func (u *itemHandler) EditItem(c echo.Context) error {
 	response := domains.GeneralResponse{}
 	err := domains.ErrorCode{}
-	var itemID int
-	itemID, err.Err = strconv.Atoi(c.Param("id"))
-	if err.Err != nil {
-		response.StatusCode = 400
-		response.Message = "id parameter must be valid"
-		return c.JSON(response.StatusCode, response)
-	}
+
+	itemID := c.Param("id")
 
 	modifiedItemData := domains.Item{}
 	if err := c.Bind(&modifiedItemData); err != nil {
@@ -182,13 +175,8 @@ func (u *itemHandler) EditItem(c echo.Context) error {
 func (u *itemHandler) DeleteItem(c echo.Context) error {
 	response := domains.GeneralResponse{}
 	err := domains.ErrorCode{}
-	var itemID int
-	itemID, err.Err = strconv.Atoi(c.Param("id"))
-	if err.Err != nil {
-		response.StatusCode = 400
-		response.Message = "id parameter must be valid"
-		return c.JSON(response.StatusCode, response)
-	}
+
+	itemID := c.Param("id")
 
 	err = u.itemService.DeleteItemService(itemID)
 	if err.Err != nil {
@@ -199,7 +187,7 @@ func (u *itemHandler) DeleteItem(c echo.Context) error {
 
 	response.StatusCode = 200
 	response.Message = "success delete item"
-	response.Data = map[string]int{"item_id": itemID}
+	response.Data = map[string]string{"item_id": itemID}
 
 	return c.JSON(response.StatusCode, response)
 }

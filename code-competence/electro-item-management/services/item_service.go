@@ -12,8 +12,8 @@ type (
 		GetItemsByCategoryService(categoryID int, page *domains.Pages) ([]domains.Item, int, domains.ErrorCode)
 		GetItemService(item *domains.Item) domains.ErrorCode
 		CreateItemService(itemData *domains.Item) domains.ErrorCode
-		EditItemService(itemID int, modifiedItemData *domains.Item) (domains.Item, domains.ErrorCode)
-		DeleteItemService(itemID int) domains.ErrorCode
+		EditItemService(itemID string, modifiedItemData *domains.Item) (domains.Item, domains.ErrorCode)
+		DeleteItemService(itemID string) domains.ErrorCode
 	}
 
 	itemService struct {
@@ -64,6 +64,19 @@ func (is *itemService) CreateItemService(itemData *domains.Item) domains.ErrorCo
 	if err := itemData.Validate(); err.Err != nil {
 		return err
 	}
+
+	if itemData.Category.ID != 0 {
+		category := domains.Category{ID: itemData.Category.ID}
+		err := is.categoryRepository.GetCategory(&category)
+		if err.Err != nil {
+			return err
+		}
+		itemData.Category.ID = category.ID
+		itemData.Category.Name = category.Name
+		itemData.Category.Metadata.CreatedAt = category.Metadata.CreatedAt
+		itemData.Category.Metadata.UpdatedAt = category.Metadata.CreatedAt
+	}
+
 	err := is.itemRepository.CreateItem(itemData)
 	if err.Err != nil {
 		return err
@@ -71,10 +84,16 @@ func (is *itemService) CreateItemService(itemData *domains.Item) domains.ErrorCo
 	return err
 }
 
-func (is *itemService) EditItemService(itemID int, modifiedItemData *domains.Item) (domains.Item, domains.ErrorCode) {
+func (is *itemService) EditItemService(itemID string, modifiedItemData *domains.Item) (domains.Item, domains.ErrorCode) {
 	//find record first if not exists return error
-	item := domains.Item{ID: uint(itemID)}
-	err := is.itemRepository.GetItem(&item)
+	item := domains.Item{}
+
+	err := item.InsertID(itemID)
+	if err.Err != nil {
+		return domains.Item{}, err
+	}
+
+	err = is.itemRepository.GetItem(&item)
 	if err.Err != nil {
 		return domains.Item{}, err
 	}
@@ -133,8 +152,13 @@ func (is *itemService) EditItemService(itemID int, modifiedItemData *domains.Ite
 
 }
 
-func (is *itemService) DeleteItemService(itemID int) domains.ErrorCode {
-	item := domains.Item{ID: uint(itemID)}
-	err := is.itemRepository.DeleteItem(&item)
+func (is *itemService) DeleteItemService(itemID string) domains.ErrorCode {
+	item := domains.Item{}
+
+	err := item.InsertID(itemID)
+	if err.Err != nil {
+		return err
+	}
+	err = is.itemRepository.DeleteItem(&item)
 	return err
 }

@@ -3,7 +3,7 @@ package domains
 import "errors"
 
 type Item struct {
-	ID          uint           `json:"id"`
+	Base
 	Name        string         `json:"name"`
 	CategoryID  uint           `json:"-"`
 	Category    Category       `gorm:"constraint:OnUpdate:CASCADE;" json:"category"`

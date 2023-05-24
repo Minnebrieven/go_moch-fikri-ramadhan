@@ -87,14 +87,14 @@ func MigrateAndSeedDB(db *gorm.DB) error {
 			},
 			{
 				Name:        "Television",
-				CategoryID:  1,
+				CategoryID:  2,
 				Description: "televisi digital",
 				Stock:       3,
 				Price:       1000000,
 			},
 			{
 				Name:        "Laptop",
-				CategoryID:  1,
+				CategoryID:  2,
 				Description: "televisi digital",
 				Stock:       6,
 				Price:       2000000,
